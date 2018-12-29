@@ -1,0 +1,14 @@
+{
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Spring Boot-ServiceHostinfoApplication<service-hostinfo>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"console": "internalConsole",
+			"mainClass": "com.logicalenigma.springboot.servicehostinfo.ServiceHostinfoApplication",
+			"projectName": "service-hostinfo",
+			"args": ""
+		}
+	]
+}
