@@ -1,8 +1,9 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ENV JAVA_OPTS=
-ARG DEPENDENCY=target/dependency
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY ${DEPENDENCY}/META-INF /app/META-INF
-COPY ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","$JAVA_OPTS", "-cp","app:app/lib/*","com.logicalenigma.springboot.servicehostinfo.ServiceHostinfoApplication"]
+ARG JAVA_OPTS
+ENV JAVA_OPTS=$JAVA_OPTS
+ADD target/service-hostinfo-0.0.1-SNAPSHOT.jar application.jar
+EXPOSE 8101
+#ENTRYPOINT exec java $JAVA_OPTS -jar discovery-server.jar
+# For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
+ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar application.jar
