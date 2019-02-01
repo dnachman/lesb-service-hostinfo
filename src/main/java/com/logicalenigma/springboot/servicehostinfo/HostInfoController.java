@@ -1,5 +1,7 @@
 package com.logicalenigma.springboot.servicehostinfo;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +39,20 @@ public class HostInfoController {
 		responseMap.put("requestLanguage", acceptLanguage);
 		responseMap.put("requestSoftware", userAgent);
 		
+
+		return responseMap;
+
+	}
+
+@RequestMapping(path = "/server-info")
+	@ResponseBody
+	public Map<Object, Object> getServerInfo() throws UnknownHostException {
+
+		Map<Object, Object> responseMap = new HashMap<>();
+
+		InetAddress ip = InetAddress.getLocalHost();
+
+		responseMap.put("hostAddress", ip.getHostAddress());
 
 		return responseMap;
 
