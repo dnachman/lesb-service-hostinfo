@@ -25,23 +25,23 @@ pipeline {
 							def dockerImage = docker.build(config.dockerRepository + "${pomArtifactId}:${pomVersion}")
 							docker.withRegistry('', config.dockerRegistryCredentials) {
 								dockerImage.push()
-								dockerImage.push('latest')
+								//dockerImage.push('latest')
 							}
 			    	}
 					}
 				}
-				stage ('rpi') {
-					steps {
-						script {
-								// build docker image
-							def dockerImageRpi = docker.build(config.dockerRepository + "${pomArtifactId}" + ":rpi-${pomVersion}", '-f Dockerfile.rpi .')
-							docker.withRegistry('', config.dockerRegistryCredentials) {
-								dockerImageRpi.push()
-								dockerImageRpi.push('rpi')
-							}
-			    	}
-					}
-				}
+				// stage ('rpi') {
+				// 	steps {
+				// 		script {
+				// 				// build docker image
+				// 			def dockerImageRpi = docker.build(config.dockerRepository + "${pomArtifactId}" + ":rpi-${pomVersion}", '-f Dockerfile.rpi .')
+				// 			docker.withRegistry('', config.dockerRegistryCredentials) {
+				// 				dockerImageRpi.push()
+				// 				//dockerImageRpi.push('rpi')
+				// 			}
+			  //   	}
+				// 	}
+				// }
 			}
 			
 		}
