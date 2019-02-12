@@ -37,7 +37,7 @@ pipeline {
 							def dockerImageRpi = docker.build(config.dockerRepository + "${pomArtifactId}" + ":rpi-${pomVersion}", '-f Dockerfile.rpi .')
 							docker.withRegistry('', config.dockerRegistryCredentials) {
 								dockerImageRpi.push()
-								//dockerImageRpi.push('rpi')
+								dockerImageRpi.push('rpi')
 							}
 			    	}
 					}
